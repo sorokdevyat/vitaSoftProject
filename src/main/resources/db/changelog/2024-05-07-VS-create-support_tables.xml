@@ -1,0 +1,19 @@
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.1.xsd">
+
+    <changeSet id="vs-5" author="NV">
+        <createTable tableName="account_roles">
+            <column name="account_id" type="BIGINT">
+            </column>
+            <column name="account_role" type="VARCHAR(20)">
+            </column>
+        </createTable>
+        <addForeignKeyConstraint baseColumnNames="account_id"
+                                 baseTableName="account_roles"
+                                 constraintName="fk_account_roles_account_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="account"/>
+    </changeSet>
+</databaseChangeLog>

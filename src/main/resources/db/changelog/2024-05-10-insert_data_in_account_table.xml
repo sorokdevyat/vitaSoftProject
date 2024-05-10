@@ -1,0 +1,29 @@
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                                       http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.20.xsd">
+
+    <changeSet id="VS-48" author="YourName">
+        <sql>
+
+--             !!! ПАРОЛИ СОВПАДАЮТ С ЮЗЕРНЕЙМОМ !!!
+            INSERT INTO account (username, password) VALUES ('user1', '$2a$12$eFOAkwpxzAgGLQuOCutJjetIj4xZ7qkZc8hdB5KzzTnsvrHcVMM8y');
+            INSERT INTO account (username, password) VALUES ('user2', '$2a$12$rFliPxJoioGI6DZY9ZPhbOYbrtrTno3XrsEpYXzhLJyLILda3Hiiy');
+            INSERT INTO account (username, password) VALUES ('user3', '$2a$12$TdY5zKnpZ8usdJvJMhSmu.71TP5H3F/16U.Etm6cHy4xWig61Enz2');
+            INSERT INTO account (username, password) VALUES ('user4', '$2a$12$TdY5zKnpZ8usdJvJMhSmu.71TP5H3F/16U.Etm6cHy4xWig61Enz2');
+            INSERT INTO account (username, password) VALUES ('user5', '$2a$12$KbAd.r4adwm/VAgr61jAm.8./Ni0eiA0SVLoc1.e7LFV5mNx5oplS');
+
+        </sql>
+
+        <sql>
+            INSERT INTO account_roles (account_id, account_role) VALUES ((SELECT id FROM account WHERE username = 'user1'), 'USER');
+            INSERT INTO account_roles (account_id, account_role) VALUES ((SELECT id FROM account WHERE username = 'user2'), 'OPERATOR');
+            INSERT INTO account_roles (account_id, account_role) VALUES ((SELECT id FROM account WHERE username = 'user3'), 'USER');
+            INSERT INTO account_roles (account_id, account_role) VALUES ((SELECT id FROM account WHERE username = 'user4'), 'USER');
+            INSERT INTO account_roles (account_id, account_role) VALUES
+                                                                     ((SELECT id FROM account WHERE username = 'user5'), 'USER'),
+                                                                     ((SELECT id FROM account WHERE username = 'user5'), 'OPERATOR'),
+        </sql>
+    </changeSet>
+
+</databaseChangeLog>
